@@ -1,0 +1,66 @@
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary float-right m-2" 
+data-bs-toggle="modal" 
+data-bs-target="#staticBackdrop"
+(click)="addTodo()">
+    Add To Do
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ModalTitle}}</h1>
+          <button type="button" class="btn-close" 
+          data-bs-dismiss="modal" aria-label="Close"
+          (click)="closeClick()"></button>
+        </div>
+        <div class="modal-body">
+          <app-add-update [todo] = "todo" *ngIf="activateAddUpdate"></app-add-update>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<table class="table">
+    <thead>
+      <tr >
+        <th scope="col">
+          <div class="d-flex flex-row">
+            <input type="text" [(ngModel)]="keyword" class="form-control" placeholder="search by keyword" (input)="ListFilter()">
+          </div>
+          Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">
+          <div class="d-flex flex-row">
+            <input type="date" [(ngModel)]="dateFilter" class="form-control" placeholder="filter by date" (change)="ListFilter()">
+          </div>
+          Due Date</th>
+        <th scope="col">Options</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <tr *ngFor="let t of todos_list">
+        <th scope="row">{{t.title}}</th>
+        <td>{{t.description}}</td>
+        <td>{{t.dueDate}}</td>
+        <td>
+            <button type="button" 
+            class="btn btn-warning" 
+            data-bs-toggle="modal" 
+            data-bs-target="#staticBackdrop"
+            (click)="editTodo(t)">edit</button>
+
+            <button type="button" 
+            class="btn btn-danger" 
+            data-bs-toggle="modal" 
+            data-bs-target="#staticBackdrop"
+            (click)="deleteTodo(t.id!)">delete</button>
+        
+          </td>
+
+      </tr>
+    </tbody>
+  </table>

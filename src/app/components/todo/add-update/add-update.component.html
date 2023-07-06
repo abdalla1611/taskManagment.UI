@@ -1,0 +1,22 @@
+
+<div class="form-froup row">
+    <label class="col-sm-2 col-form-label">title</label>
+    <div class="col-sm-10">
+        <input type="text" placeholder="enter Todo title" 
+        class="form-control" [(ngModel)]="todoTitle">
+    </div>
+    <label class="col-sm-2 col-form-label">description</label>
+    <div class="col-sm-10">
+        <input type="text" placeholder="enter Todo description" 
+        class="form-control" [(ngModel)]="todoDescription">
+    </div>
+    <label class="col-sm-2 col-form-label">dueDate</label>
+    <div class="col-sm-10">
+        <input type="datetime-local" placeholder="enter dueDate" 
+        class="form-control" [(ngModel)]="todoDueDate">
+    </div>
+    
+</div>
+
+<button (click)="add()" *ngIf="todo.id == 0" class="btn btn-primary">add</button>
+<button (click)="edit()" *ngIf="todo.id != 0" class="btn btn-primary">edit</button>
